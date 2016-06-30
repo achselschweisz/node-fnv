@@ -2,9 +2,11 @@
 
 Fowler–Noll–Vo (FNV-1a 32-bit) hash implementation for node.js
 
+
 ## Install
 
 	npm install fnv
+
 
 ## Usage
 
@@ -15,13 +17,17 @@ h.update(Buffer("foobar"));
 h.digest("hex"); // 'bf9cf968'
 ```
 
+
 ## API
 
+
 ### Class FNV
+
 
 ##### new FNV()
 
 Create a new FNV hash object.
+
 
 ##### fnv.update(data)
 
@@ -38,11 +44,30 @@ This can be called many times with new data.
 Returns the digest of all of the passed data to be hashed.
 If no encoding is provided <code>'binary'</code> is used.
 
+
 ##### fnv.value()
 
 Returns the hash value as Number
+
 
 ## References
 
 - <http://isthe.com/chongo/tech/comp/fnv/>
 - <http://tools.ietf.org/html/draft-eastlake-fnv-06>
+
+
+## Tests
+
+```bash
+npm test
+firefox coverage/lcov-report/index.html
+```
+
+### Coverage
+
+```
+Statements   : 94.44% ( 17/18 )
+Branches     : 87.5% ( 7/8 )
+Functions    : 75% ( 3/4 )
+Lines        : 94.44% ( 17/18 )
+```

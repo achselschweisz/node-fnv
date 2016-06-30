@@ -9,14 +9,14 @@ suite('FNV', function() {
 
 
   test('Chainable .update()', () => {
-    assert.equal(new FNV().update('foobar').digest('hex'), 'bf9cf968');
+    assert.strictEqual(new FNV().update('foobar').digest('hex'), 'bf9cf968');
   });
 
 
   test('#init', () => {
     const h = new FNV();
 
-    assert.equal(h.digest('hex'), '811c9dc5');
+    assert.strictEqual(h.digest('hex'), '811c9dc5');
   });
 
 
@@ -24,7 +24,8 @@ suite('FNV', function() {
     const h = new FNV();
 
     h.update(Buffer(''));
-    assert.equal(h.digest('hex'), '811c9dc5');
+    const digest = h.digest();
+    assert(digest);
   });
 
 
@@ -32,7 +33,7 @@ suite('FNV', function() {
     const h = new FNV();
 
     h.update(Buffer('foobar'));
-    assert.equal(h.digest('hex'), 'bf9cf968');
+    assert.strictEqual(h.digest('hex'), 'bf9cf968');
   });
 
 
@@ -40,7 +41,7 @@ suite('FNV', function() {
     const h = new FNV();
 
     h.update(Buffer('a'));
-    assert.equal(h.digest('hex'), 'e40c292c');
+    assert.strictEqual(h.digest('hex'), 'e40c292c');
   });
 
 
@@ -48,7 +49,7 @@ suite('FNV', function() {
     const h = new FNV();
 
     h.update(Buffer('foobar\0'));
-    assert.equal(h.digest('hex'), '0c1c9eb8');
+    assert.strictEqual(h.digest('hex'), '0c1c9eb8');
   });
 
 
@@ -57,7 +58,7 @@ suite('FNV', function() {
 
     h.update(Buffer('foo'));
     h.update(Buffer('bar'));
-    assert.equal(h.digest('hex'), 'bf9cf968');
+    assert.strictEqual(h.digest('hex'), 'bf9cf968');
   });
 
 
@@ -65,14 +66,17 @@ suite('FNV', function() {
     let h = new FNV();
 
     h.update('');
-    assert.equal(h.digest('hex'), '811c9dc5');
+    assert.strictEqual(h.digest('hex'), '811c9dc5');
     h.update('foobar');
-    assert.equal(h.digest('hex'), 'bf9cf968');
+    assert.strictEqual(h.digest('hex'), 'bf9cf968');
 
     h = new FNV();
 
     h.update('a');
-    assert.equal(h.digest('hex'), 'e40c292c');
+    assert.strictEqual(h.digest('hex'), 'e40c292c');
+
+    const val = h.value();
+    assert.strictEqual(val, -468965076);
   });
 
 
