@@ -8,11 +8,12 @@ Fowler–Noll–Vo (FNV-1a 32-bit) hash implementation for node.js
 
 ## Usage
 
-	var FNV = require("fnv").FNV
-	var h = new FNV()
-	h.update(Buffer("foobar"))
-	h.digest("hex") // 'bf9cf968'
-
+```js
+const FNV = require("fnv");
+const h = new FNV()
+h.update(Buffer("foobar"));
+h.digest("hex"); // 'bf9cf968'
+```
 
 ## API
 
